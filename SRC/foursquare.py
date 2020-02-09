@@ -13,7 +13,7 @@ tokenID = os.getenv("CLIENT_ID")
 tokenSCRT = os.getenv("CLIENT_SECRET")
 
 #Para ver que hay cerca
-def exploreForesquare (latitude=40.7243,longitude=-74.0018,query,limit,distnce):
+def exploreForesquare (query,limit,distance,latitude=40.7243,longitude=-74.0018,):
     
     #configurar url y parámetros token
     url = 'https://api.foursquare.com/v2/venues/explore'
@@ -30,9 +30,13 @@ def exploreForesquare (latitude=40.7243,longitude=-74.0018,query,limit,distnce):
     ll=f'{latitude},{longitude}',
     # Para especificar el nombre del sitio buscado
     query=query,
-    limit=limit
+    limit=limit,
     radius=distance
     )
     resp = requests.get(url=url, params=params)
     data = json.loads(resp.text)
     return data
+
+
+check = exploreForesquare(query="Soho",limit=2,distance=800)
+print(check)
