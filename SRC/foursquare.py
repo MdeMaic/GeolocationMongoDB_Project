@@ -36,7 +36,3 @@ def exploreForesquare (query,limit,distance,latitude=40.7243,longitude=-74.0018,
     resp = requests.get(url=url, params=params)
     data = json.loads(resp.text)
     return data
-
-
-check = exploreForesquare(query="Soho",limit=2,distance=800)
-print(check)

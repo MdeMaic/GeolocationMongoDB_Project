@@ -1,6 +1,3 @@
-Proyecto 3. Geoloc
-
-Instalar: geopandas
 ## GeoSpartial Project - TODO's
 
 You recently created a new company in the `GAMING industry`. The company will have the following scheme:
