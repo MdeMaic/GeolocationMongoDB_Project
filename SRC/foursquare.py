@@ -13,7 +13,7 @@ tokenID = os.getenv("CLIENT_ID")
 tokenSCRT = os.getenv("CLIENT_SECRET")
 
 #Para ver que hay cerca
-def exploreForesquare (query,limit,distance,latitude=40.7243,longitude=-74.0018,):
+def exploreForesquare (query,limit,distance,latitude=40.7243,longitude=-74.0018):
     
     #configurar url y parámetros token
     url = 'https://api.foursquare.com/v2/venues/explore'
@@ -26,12 +26,45 @@ def exploreForesquare (query,limit,distance,latitude=40.7243,longitude=-74.0018,
     params = dict(
     client_id=tokenID,
     client_secret=tokenSCRT,
-    v='20180323',
+    v='20200205',
     ll=f'{latitude},{longitude}',
     # Para especificar el nombre del sitio buscado
     query=query,
     limit=limit,
     radius=distance
+    )
+    resp = requests.get(url=url, params=params)
+    data = json.loads(resp.text)
+    return data
+
+
+def searchForesquare (ID,limit,distance,latitude=40.7243,longitude=-74.0018,):
+    
+    if ID == "party":
+        category = "4d4b7105d754a06376d81259"
+    elif ID == "niños":
+        category = "4f4533814b9074f6e4fb0107"
+    elif ID == "vegano":
+        category = "4bf58dd8d48988d1d3941735"
+
+    #configurar url y parámetros token
+    url = 'https://api.foursquare.com/v2/venues/search'
+    tokenID = os.getenv("CLIENT_ID")
+    tokenSCRT = os.getenv("CLIENT_SECRET")
+    if not tokenID or not tokenSCRT:
+        raise ValueError("Auth Fail. Check process please")
+
+    #configurar parámetros de requests.
+    params = dict(
+    client_id=tokenID,
+    client_secret=tokenSCRT,
+    v='20200205',
+    ll=f'{latitude},{longitude}',
+    # Para especificar el nombre del sitio buscado
+    query=query,
+    limit=limit,
+    radius=distance,
+    categoryId=category
     )
     resp = requests.get(url=url, params=params)
     data = json.loads(resp.text)
