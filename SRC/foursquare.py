@@ -38,14 +38,16 @@ def exploreForesquare (query,limit,distance,latitude=40.7243,longitude=-74.0018)
     return data
 
 
-def searchForesquare (ID,limit,distance,latitude=40.7243,longitude=-74.0018,):
+def searchForesquare (limit,distance,ID="party",latitude=37.772323,longitude=-122.214897):
     
     if ID == "party":
         category = "4d4b7105d754a06376d81259"
     elif ID == "niños":
-        category = "4f4533814b9074f6e4fb0107"
+        category = "4bf58dd8d48988d13b941735"
     elif ID == "vegano":
         category = "4bf58dd8d48988d1d3941735"
+    else:
+        raise ValueError ("Choose party, niños or vegano")
 
     #configurar url y parámetros token
     url = 'https://api.foursquare.com/v2/venues/search'
@@ -58,10 +60,9 @@ def searchForesquare (ID,limit,distance,latitude=40.7243,longitude=-74.0018,):
     params = dict(
     client_id=tokenID,
     client_secret=tokenSCRT,
-    v='20200205',
+    v='20200201',
     ll=f'{latitude},{longitude}',
     # Para especificar el nombre del sitio buscado
-    query=query,
     limit=limit,
     radius=distance,
     categoryId=category
