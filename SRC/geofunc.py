@@ -6,7 +6,7 @@ def geoCode(address):
     data = requests.get(f"https://geocode.xyz/{address}?json=1").json()
     return {
         "type":"Point",
-        "coordinates":[float(data["longt"]),float(data["latt"])]
+        "coordinates":[float(data['longt']),float(data['latt'])]
     }
 
 
