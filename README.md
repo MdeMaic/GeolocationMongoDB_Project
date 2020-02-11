@@ -97,5 +97,8 @@ Please make sure to update tests as appropriate.
 # Project Status
 Learning and enjoying everyday.
 Next steps:
+- Check investment in startups: billion, million...
+- Refactor function connectMongoColl. Avoid multiple conections
+- Improve Map(carto)
 - Use folium and generate html maps
 - Refactor and generate better functions
