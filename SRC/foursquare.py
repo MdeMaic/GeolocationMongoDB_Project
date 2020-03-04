@@ -70,3 +70,32 @@ def searchForesquare (limit,distance,ID="party",latitude=37.772323,longitude=-12
     resp = requests.get(url=url, params=params)
     data = json.loads(resp.text)
     return data
+
+
+def tiendaForesquare (limit,distance,name="Zara",latitude=37.772323,longitude=-122.214897):
+    
+    
+    category = "4bf58dd8d48988d103951735"
+
+    #configurar url y parámetros token
+    url = 'https://api.foursquare.com/v2/venues/search'
+    tokenID = os.getenv("CLIENT_ID")
+    tokenSCRT = os.getenv("CLIENT_SECRET")
+    if not tokenID or not tokenSCRT:
+        raise ValueError("Auth Fail. Check process please")
+
+    #configurar parámetros de requests.
+    params = dict(
+    client_id=tokenID,
+    client_secret=tokenSCRT,
+    v='20200201',
+    ll=f'{latitude},{longitude}',
+    # Para especificar el nombre del sitio buscado
+    limit=limit,
+    radius=distance,
+    categoryId=category,
+    name=name
+    )
+    resp = requests.get(url=url, params=params)
+    data = json.loads(resp.text)
+    return data
